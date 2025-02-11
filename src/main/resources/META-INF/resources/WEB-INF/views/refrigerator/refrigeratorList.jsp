@@ -27,7 +27,46 @@
 	};
 
 	$(document).ready( function() {
+		
+		// 전체 선택과 해제
+		$("#checkAll").on("click", function(){
+			var chk = this.checked;
+			$(".check").each((idx, ele) => {
+				ele.checked = chk;
+			});
+		});
 
+		// 수량 변경 버튼 클릭 이벤트 처리
+		$(".btn-success").on("click", function() {
+			event.preventDefault();
+			var row = $(this).closest("tr");
+			var num = row.find("input#hidden_num").val();
+			var amount = row.find("input#amount").val();
+			var queryString = "num=" + num + "&amount=" + amount;
+			var url = "updateRefrigeratorStock?" + queryString;
+			location.href = url;
+		});
+		
+		
+		// 전체 변경 사항 저장하기
+		$("#saveAll").on("click", function(){
+			event.preventDefault();
+			var f = $("form")[0];
+			f.action = "#";
+			f.method = "get";
+			f.submit();
+		});
+		
+		
+		// 선택한 상품 삭제하기
+		$("#deleteAll").on("click", function(){
+			var f = $("form")[0];
+			f.action = "refrigeratorDeleteAll";
+			f.method = "get";
+			f.submit();
+		});
+		
+		
 		// 하단 냉장고 상품 추가 선택 시
 		$("#add_gCode").on("change", function() {
 			var imageName = $("#add_gCode").val();
@@ -69,23 +108,6 @@
 			location.href = url;
 		});
 		
-		// 전체 삭제 버튼 클릭 시 확인 후 삭제
-		${"#deleteAll"}.on("click", funtion(){
-			if(confirm("모든 항목을 삭제하시겠습니까?")){
-				$.ajax({
-					type: "POST",
-					url: "refrigeratorDeleteAll",
-					sucess: function(response){
-						location.reload();
-					},
-					error: function(){
-						alert("삭제에 실패하였습니다. 다시 시도해주세요")
-					}
-				});
-			}
-		});
-		
-		
 	});//end ready
 	
 </script>
@@ -97,6 +119,7 @@
 				<table class="table align-middle text-center">
 					<thead>
 						<tr>
+							<th><input type="checkbox" name="item_chk" id="checkAll"> 전체선택</th>
 							<th>상품명</th>
 							<th>재고 수량</th>
 							<th>수량 변경</th>
@@ -106,6 +129,7 @@
 					<tbody>
 						<c:forEach var="item" items="${ refrigeratorList }">
 							<tr>
+								<td><input type="checkbox" name="check" class="check" value="${ item.num }"></td>
 								<td><input type="hidden" name="hidden_num" id="hidden_num" value="${ item.num }"> 
 									<img src="images/items/${ item.gCode }.png" width="160" height="160" id="gCode"><br>${ item.gName }
 								</td>
@@ -113,19 +137,25 @@
 									<br><br>
 								</td>
 								<td>
-									<button class="btn btn-success">수량 변경</button>
+									<button class="btn btn-outline-success">수량 변경</button>
 								</td>
-								<td><a href="refrigeratorDelete?num=${ item.num }" class="btn btn-warning">삭제</a></td>
+								<td><a href="refrigeratorDelete?num=${ item.num }" class="btn btn-outline-danger">삭제</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-			
+				<div class="container">
+					<button class="btn btn-success" id="saveAll">변경사항 저장</button>
+					&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-danger" id="deleteAll">선택 상품 삭제</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </form>
+<div style="height: 100px;">
 
+</div>
 <form>
 	<div class="container">
 		<div class="TodoApp">
@@ -139,7 +169,6 @@
 						<th>상품명</th>
 						<th>수량(1~99)</th>
 						<th>저장</th>
-						<th>초기화</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -161,7 +190,6 @@
 						</td>
 						<td><input type="number" min="1" max="99" name="rStock" id="add_rStock" value="1" size="2"></td>
 						<td><button type="button" class="btn btn-outline-success" id="addRef">저장</button></td>
-						<td><button type="button" class="btn btn-outline-danger">초기화</button></td>
 					</tr>
 				</tbody>
 			</table>

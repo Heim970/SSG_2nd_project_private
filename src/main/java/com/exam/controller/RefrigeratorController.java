@@ -112,10 +112,11 @@ public class RefrigeratorController {
 	@GetMapping("/refrigeratorDeleteAll")
 	public String refrigeratorDeleteAll(@RequestParam(name = "check", required = false) List<String> check) {
 		
-		System.out.println("check: " + check);
 		if(check != null) {
+			logger.info("CustomLOG[REQUEST]: 냉장고에서 상품 삭제를 요청받음 삭제리스트: {}", check);
 			int n = refrigeratorService.refrigeratorDeleteAll(check);
 		}
+		logger.info("CustomLOG[SUCCESS]: 냉장고에서 상품이 정상적으로 삭제됨");
 		return "redirect:refrigerator";
 	}
 
