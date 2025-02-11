@@ -93,6 +93,7 @@
 				contentType: "application/json",
 				data: JSON.stringify(data),
 				success: function(responseJson, status, xhr) {
+					alert("수량이 변경되었습니다.");
 				},
 				error: function(xhr, status, error) {
 					alert("오류가 발생했습니다");

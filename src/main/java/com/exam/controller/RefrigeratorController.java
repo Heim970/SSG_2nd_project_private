@@ -147,6 +147,6 @@ public class RefrigeratorController {
 		
 		logger.info("CustomLOG[SUCCESS]: 냉장고에서 상품 수량이 정상적으로 변경됨 data:{}", data);
 		
-		return "refrigerator/refrigeratorUpdateSuccess";
+		return "refrigerator";
 	}
 }
