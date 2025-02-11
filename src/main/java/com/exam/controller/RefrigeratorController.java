@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exam.dto.GoodsDTO;
@@ -119,5 +122,31 @@ public class RefrigeratorController {
 		logger.info("CustomLOG[SUCCESS]: 냉장고에서 상품이 정상적으로 삭제됨");
 		return "redirect:refrigerator";
 	}
+	
+	// 냉장고 상품 수량 변경
+	@PostMapping("/updateAll")
+	public String updateAll(@RequestBody List<RefrigeratorDTO> data) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDTO memberDTO = (MemberDTO) auth.getPrincipal();
 
+		String userid = memberDTO.getUserid();
+		// undefined 항목 삭제
+		
+		logger.info("CustomLOG[REQUEST]: 냉장고 상품 수량 변경을 요청받음 userid: {}, data:{}", userid, data);
+		
+		// 순회하며 업데이트
+		Iterator<RefrigeratorDTO> ite = data.iterator();
+		while (ite.hasNext()) {
+			RefrigeratorDTO dto = (RefrigeratorDTO) ite.next();
+			dto.setUserid(userid); // userid 입력
+			if (dto.getNum() != 0) {
+				// num값이 유효한 경우에만 update 실행
+				refrigeratorService.updateRefrigeratorStock(dto);				
+			}
+		}
+		
+		logger.info("CustomLOG[SUCCESS]: 냉장고에서 상품 수량이 정상적으로 변경됨 data:{}", data);
+		
+		return "refrigerator/refrigeratorUpdateSuccess";
+	}
 }
