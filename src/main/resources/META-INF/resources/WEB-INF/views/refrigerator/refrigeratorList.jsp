@@ -37,10 +37,10 @@
 		});
 
 		// 수량 변경 버튼 클릭 이벤트 처리
-		$(".btn-success").on("click", function() {
+		$(".btn-outline-success").on("click", function() {
 			event.preventDefault();
 			var row = $(this).closest("tr");
-			var num = row.find("input#hidden_num").val();
+			var num = row.find("input.check").val();
 			var amount = row.find("input#amount").val();
 			var queryString = "num=" + num + "&amount=" + amount;
 			var url = "updateRefrigeratorStock?" + queryString;
@@ -96,17 +96,6 @@
 			f.method = "get";
 			f.submit();
 		});
-
-		// 수량 변경 버튼 클릭 이벤트 처리
-		$(".btn-success").on("click", function() {
-			event.preventDefault();
-			var row = $(this).closest("tr");
-			var num = row.find("input#hidden_num").val();
-			var amount = row.find("input#amount").val();
-			var queryString = "num=" + num + "&amount=" + amount;
-			var url = "updateRefrigeratorStock?" + queryString;
-			location.href = url;
-		});
 		
 	});//end ready
 	
@@ -130,7 +119,7 @@
 						<c:forEach var="item" items="${ refrigeratorList }">
 							<tr>
 								<td><input type="checkbox" name="check" class="check" value="${ item.num }"></td>
-								<td><input type="hidden" name="hidden_num" id="hidden_num" value="${ item.num }"> 
+								<td>
 									<img src="images/items/${ item.gCode }.png" width="160" height="160" id="gCode"><br>${ item.gName }
 								</td>
 								<td><input type="number" name="stock" id="amount" value="${ item.rStock }" style="text-align: right;" size="3" min="0" max="99">
