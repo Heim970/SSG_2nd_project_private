@@ -31,26 +31,38 @@
 	});//end ready
 </script>
 <div class="container">
-	<div>${errorMessage}</div>
-	<form class="row g-3 m-4">
-		<input type="hidden" name="gCode" value="${goodsRetrieve.gCode}">
+    <div>${errorMessage}</div>
+    <!-- test1 -->
+    <form class="row g-3 m-4">
+        <input type="hidden" name="gCode" value="${ goodsRetrieve.gCode }">
 
-		<div class="row">
-			<div class="card" style="width: 25rem;">
-				<img src="images/items/${goodsRetrieve.gImage}.png" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h6 class="card-title"><span class="fw-bold">제품코드:</span> ${goodsRetrieve.gCode}</h6>
-					<h6 class="card-text"><span class="fw-bold ">상품명:</span> ${goodsRetrieve.gName}</h6>
-					<h6 class="card-text"><span class="fw-bold ">가격:</span> ${goodsRetrieve.gPrice}</h6>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="images/items/${ goodsRetrieve.gImage }.png" class="card-img-top" alt="...">
 
-					<span class="fw-bold ">주문수량:</span> <input type="text" name="gAmount" value="1" id="gAmount">
-			      	<img src="images/up.PNG" id="up"> 
-			      	<img src="images/down.PNG" id="down">
-					<button class="btn btn-primary mt-3">구매</button>
-					<button class="btn btn-primary mt-3" id="cartBtn">장바구니</button>
-				</div>
-			</div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="width: 25rem;">
+                    <div class="card-body">
+                        <h6 class="card-title pb-2"><span class="fw-light">제품코드: ${ goodsRetrieve.gCode }</span></h6>
+                        <h6 class="card-text pb-2"><span class="fw-bold">${ goodsRetrieve.gName }</span></h6>
+                        <h6 class="card-text pb-4"><span class="fw-normal">${ goodsRetrieve.gContent }</span></h6>
+                        <h6 class="card-text"><span class="fw-bold ">가격: </span> ${ goodsRetrieve.gPrice } 원</h6>
+                        <hr>
+                        <div class="text-center">
+                            <span class="fw-bold">주문수량:</span> <input type="text" name="gAmount" value="1" id="gAmount">
+                            <img src="images/up.PNG" id="up">
+                            <img src="images/down.PNG" id="down">
+                            <div class="text-center">
+                                <button class="btn btn-primary mt-3">구매</button>
+                                <button class="btn btn-primary mt-3" id="cartBtn">장바구니</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-		</div>
-	</form>
+
+        </div>
+    </form>
 </div>
