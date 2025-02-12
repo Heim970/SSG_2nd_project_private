@@ -3,6 +3,12 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<style>
+	header {
+	    background-color: #f8fafc;
+	}
+</style>
+	
 <header class="border-bottom border-light border-5">
 	<div class="container">
 		<div class="row">
