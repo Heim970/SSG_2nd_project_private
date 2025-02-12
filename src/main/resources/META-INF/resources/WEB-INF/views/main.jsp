@@ -69,6 +69,8 @@
             // 팝업 토글
             popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
         }
+        
+        
     </script>
 </head>
 

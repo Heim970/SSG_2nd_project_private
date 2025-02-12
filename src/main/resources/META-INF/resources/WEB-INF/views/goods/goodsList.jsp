@@ -5,7 +5,7 @@
 	$(document).ready(function(){
 		
 		const categories = {
-				'Diary' : '달걀/유제품',
+				'Dairy' : '달걀/유제품',
 				'Fruit' : '과일',
 				'Fish' : '생선/해산물',
 				'Frozen' : '냉동식품',

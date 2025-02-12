@@ -15,7 +15,7 @@
 		'VG' : '채소/신선식품'
 	};
 	const categoriesEng = {
-		'DA' : 'Diary',
+		'DA' : 'Dairy',
 		'FR' : 'Fruit',
 		'FS' : 'Fish',
 		'FZ' : 'Frozen',

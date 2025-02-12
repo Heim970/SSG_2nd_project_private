@@ -6,10 +6,6 @@
 <meta charset="UTF-8">
 <title>메인홈페이지</title>
 <style type="text/css">
-    .App {
-	  text-align: center;
-	  font-size: 16px;
-	}
 	
     label, input, button {
     margin: 10px;
