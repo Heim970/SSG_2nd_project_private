@@ -81,7 +81,7 @@
         <div class="row">
 
             <!-- 왼쪽 사이드바(menu.jsp) -->
-            <div class="col-md-2">     
+            <div class="col-md-3">     
                 <jsp:include page="common/menu.jsp" />
             </div>
 
