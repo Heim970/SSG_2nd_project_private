@@ -21,18 +21,21 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "Dairy") String gCategory,
+    public String main(@RequestParam(required = false, defaultValue = "All") String gCategory,
                        HttpServletRequest request) {
-
-        // 특정 카테고리의 상품 목록 조회
-        List<GoodsDTO> goodsList = goodsService.goodsList(gCategory);
-
-        // 모든 상품의 재고 정보 조회
-        List<GoodsDTO> allStock = goodsService.getAllStock();
-
+    	
+    	List<GoodsDTO> goodsList;
+    	
+    	if (gCategory.equals("All")) {
+    		// RequestParam이 없는 경우 = 전체 카테고리 조회하기
+    		goodsList = goodsService.getAllStock();
+    	} else {
+    		// RequestParam이 있는 경우 = 해당 카테고리 조회
+    		goodsList = goodsService.goodsList(gCategory);
+    	}
+    	
         // request에 allStock 속성 설정
         request.setAttribute("goodsList", goodsList);
-        request.setAttribute("allStock", allStock); // allStock을 설정
 
         return "main"; // main.jsp로 반환
     }
