@@ -32,14 +32,11 @@
 </script>
 <div class="container">
     <div>${errorMessage}</div>
-    <!-- test1 -->
     <form class="row g-3 m-4">
         <input type="hidden" name="gCode" value="${ goodsRetrieve.gCode }">
-
         <div class="row">
             <div class="col-md-6">
                 <img src="images/items/${ goodsRetrieve.gImage }.png" class="card-img-top" alt="...">
-
             </div>
             <div class="col-md-4">
                 <div class="card" style="width: 25rem;">
@@ -61,8 +58,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </form>
 </div>

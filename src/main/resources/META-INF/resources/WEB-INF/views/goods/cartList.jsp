@@ -36,11 +36,9 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>전체삭제 &nbsp; <input type="checkbox" name="allCheck"
-								id="allCheck"></th>
+							<th>전체삭제&nbsp;<input type="checkbox" name="allCheck" id="allCheck"></th>
 							<th>번호</th>
 							<th>상품이미지</th>
-							<th>상품정보</th>
 							<th>상품가격</th>
 							<th>상품수량</th>
 							<th>합계</th>
@@ -52,37 +50,33 @@
 					<tbody>
 						<!--  반복시작 -->
 						<c:set var="sum" value="0" />
-						<c:forEach var="cartDTO" items="${cartList}">
-							<c:set var="sum"
-								value="${cartDTO.goodsList[0].gPrice * cartDTO.gAmount + sum}" />
+						<c:forEach var="cartDTO" items="${ cartList }">
+							<c:set var="sum" value="${ cartDTO.goodsList[0].gPrice * cartDTO.gAmount + sum }" />
 							<tr>
-								<td><input type="checkbox" name="check" class="check"
-									value="${cartDTO.num}"></td>
-								<td>${cartDTO.num}</td>
-								<td><img
-									src="images/items/${cartDTO.goodsList[0].gImage}.png"
-									width="50" height="50"></td>
-								<td>${cartDTO.gCode}&nbsp;&nbsp;${cartDTO.gSize}&nbsp;/&nbsp;${cartDTO.gColor}</td>
-								<td>${cartDTO.goodsList[0].gPrice}</td>
-								<td>${cartDTO.gAmount}</td>
-								<td>${cartDTO.goodsList[0].gPrice * cartDTO.gAmount    }</td>
-								<td>${cartDTO.gCartDate}</td>
-								<td><a href="cartDelete?num=${cartDTO.num}"
-									class="btn btn-warning">Delete</a></td>
-								<td><a href="orderConfirm?num=${cartDTO.num}"
-									class="btn btn-success">주문</a></td>
+								<td><input type="checkbox" name="check" class="check" value="${ cartDTO.num }"></td>
+								<td>${ cartDTO.num}</td>
+								<td><img src="images/items/${ cartDTO.goodsList[0].gImage }.png" width="50" height="50"></td>
+								<td>${ cartDTO.goodsList[0].gPrice }원</td>
+								<td>${ cartDTO.gAmount }</td>
+								<td>${ cartDTO.goodsList[0].gPrice * cartDTO.gAmount }원</td>
+
+								<td>${ cartDTO.gCartDate }</td>
+								<td><a href="cartDelete?num=${ cartDTO.num }" class="btn btn-warning">Delete</a></td>
+								<td><a href="orderConfirm?num=${ cartDTO.num }" class="btn btn-success">주문</a></td>
 							</tr>
 						</c:forEach>
 						<!--  반복끝 -->
+
 						<tr>
 							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
-							<td colspan="3">총합: &nbsp; ${sum}</td>
+							<td colspan="3">총합: &nbsp; ${ sum } 원</td>
 						</tr>
 					</tbody>
+
 				</table>
 			</div>
 			<div class="btn btn-success m-5" id="deleteAll">전체삭제</div>

@@ -34,7 +34,6 @@ public class MainController {
     		goodsList = goodsService.goodsList(gCategory);
     	}
     	
-        // request에 allStock 속성 설정
         request.setAttribute("goodsList", goodsList);
 
         return "main"; // main.jsp로 반환
